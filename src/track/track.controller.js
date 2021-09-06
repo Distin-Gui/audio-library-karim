@@ -33,7 +33,7 @@ exports.addTrack = async (req, res) => {
 
 exports.updateTrack = async (req, res) => {
     try {
-      await model.findByIdAndUpdate(req.params.trackid, req.body);
+      await model.findByIdAndUpdate(req.params.trackid, {...req.body,updatedDate: new Date()});
 
       return res.status(200).json({ msg: "success" });
     } catch (err) {

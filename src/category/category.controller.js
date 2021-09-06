@@ -31,7 +31,8 @@ exports.addCategory = async (req, res) => {
 
 exports.updateCategory = async (req, res) => {
     try {
-        await model.findByIdAndUpdate(req.params.categoryId,req.body)
+      
+        await model.findByIdAndUpdate(req.params.categoryId,{...req.body,updatedDate: new Date()})
         return res.status(200).json({ msg: "success" });
     }
     catch (err) {

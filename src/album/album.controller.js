@@ -33,7 +33,8 @@ exports.addAlbum = async (req, res) => {
 
 exports.updateAlbum = async (req, res) => {
   try {
-    await model.findByIdAndUpdate(req.params.albumid, req.body);
+    
+    await model.findByIdAndUpdate(req.params.albumid, {...req.body,updatedDate: new Date()});
     // findOneAndUpdate({ _id: req.params.albumid }, req.body)
     // updateOne({ _id: req.params.albumid }, { $set: { name: req.body.name } })
     return res.status(200).json({ msg: "success" });
